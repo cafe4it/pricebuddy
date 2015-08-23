@@ -1,6 +1,7 @@
+// Write your package code here!
 if(Meteor.isServer){
     Meteor.methods({
-        getProductByUrl : function(url){
+        Lazada_getProductByURL : function(url){
             try{
                 check(url, String);
                 var uri = new URI(url);

@@ -8,10 +8,12 @@ meteor-platform
 kadira:flow-router-ssr
 kadira:reaktor
 kadira:react-layout
-semantic:ui
-flemay:less-autoprefixer
 react
 jquery
 reactive-var
 meteorhacks:async
 pricebuddy:osmosis
+underscorestring:underscore.string
+wt:uri-js
+pricebuddy:lazada
+materialize:materialize

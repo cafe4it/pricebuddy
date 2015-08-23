@@ -1,12 +1,8 @@
 MainLayout = React.createClass({
     render() {
         return (
-            <div className="ui page grid">
-                <div className="computer tablet only row">
-                    <TopMenuDesktop/>
-                </div>
-                <TopMenuMobile/>
-
+            <div className="container">
+                <TopMenu/>
                 {this.props.content}
             </div>
         );
