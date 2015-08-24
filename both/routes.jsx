@@ -6,6 +6,7 @@ FlowRouter.route("/", {
         });
     }
 });
+/*
 
 Reaktor.init(
     <Router>
@@ -13,3 +14,4 @@ Reaktor.init(
         <Route path="/blog/:postId" layout={MainLayout} content={BlogPost} />
     </Router>
 );
+*/

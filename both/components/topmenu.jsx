@@ -8,9 +8,9 @@ TopMenu = React.createClass({
                         <div className="nav-wrapper">
                             <a href="#" className="brand-logo"><img width="64px" src="/logo.png" alt="pricebuddy logo"/></a>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><HeaderNavItem href="/about" name="Về chúng tôi"/></li>
-                                <li><HeaderNavItem href="/" name="Bảng tin"/></li>
-                                <li><HeaderNavItem href="/how-it-works" name="Làm thế nào?"/></li>
+                                <HeaderNavItem href="/about" name="Về chúng tôi"/>
+                                <HeaderNavItem href="/" name="Bảng tin"/>
+                                <HeaderNavItem href="/how-it-works" name="Làm thế nào?"/>
                             </ul>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ var HeaderNavItem = React.createClass({
 
     render() {
         return(
-                <li className={this.isActive() && 'active'}>
+                <li className={this.isActive() ? 'active' : ''}>
                     <a href={this.props.href}>
                         {this.props.name}
                     </a>

@@ -10,9 +10,10 @@ if(Meteor.isServer){
                 }
                 url = uri.search('').toString();
                 var rs = Async.runSync(function(done){
-                    var data = undefined;
+                    var data = undefined,
+                        proxy = 'http://120.198.237.5:8088';
                     osmosis
-                        .get(url)
+                        .get(url,{proxy : proxy})
                         .set({
                             productId : '#selectedSku@value',
                             title : 'title',
