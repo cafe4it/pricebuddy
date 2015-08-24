@@ -4,6 +4,7 @@ Home = React.createClass({
         return (
             <div className="home">
                 <SearchBox/>
+                <RecentProducts/>
             </div>
         )
     }

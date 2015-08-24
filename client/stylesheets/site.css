@@ -3,7 +3,6 @@ body {
     font-family: 'Open Sans',Helvetica,Arial,sans-serif !important;
     font-weight: 400;
     font-size: 16px;
-    padding-top: 5px;
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
     text-rendering: optimizeLegibility;
@@ -11,4 +10,9 @@ body {
 
 .home{
     padding-top : 20px;
+}
+
+p.priceDisplay{
+    margin-top: 2px;
+    margin-bottom: 2px;
 }

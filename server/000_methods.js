@@ -1,32 +1,57 @@
-if(Meteor.isServer){
+if (Meteor.isServer) {
     Meteor.methods({
-        getProductByUrl : function(url){
-            try{
+        addProductFromUrl: function (url, clientId) {
+            try {
+                var clientId = clientId || Meteor.cookie.get('Pb_ClientId') || this.userId;
+
+                check(clientId, String);
                 check(url, String);
-                var uri = new URI(url);
-                if(!uri.is('url')){
-                    return false;
+
+                var uri = new URI(url),
+                    url = uri.search('').toString();
+
+                var product = Meteor.call('Lazada_getProductByURL', url);
+
+                if(!product) return false;
+
+
+                var isExists = Products.findOne({productId : product.productId});
+                var updatedAt = new Date;
+                if(isExists){
+                    FollowProducts.upsert({pId : isExists._id, clientId : clientId},{
+                        pId : isExists._id,
+                        clientId : clientId,
+                        updatedAt : updatedAt
+                    })
+                }else{
+
+                    var pid = Products.insert({
+                        productId:  product.productId,
+                        title : product.title,
+                        url : product.url,
+                        thumbnail : product.thumbnail,
+                        updatedAt : updatedAt
+                    });
+
+                    PricesHistory.insert({
+                        pId : pid,
+                        currency : product.currency,
+                        price : product.price,
+                        priceDisplay : product.price_display,
+                        updatedAt : updatedAt
+                    });
+
+                    FollowProducts.insert({
+                        pId : pid,
+                        clientId : clientId,
+                        isFollow : false,
+                        updatedAt : new Date
+                    });
+
+                    return true;
                 }
-                url = uri.search('').toString();
-                var rs = Async.runSync(function(done){
-                    var data = undefined;
-                    osmosis
-                        .get(url)
-                        .set({
-                            productId : '#selectedSku@value',
-                            title : 'title',
-                            thumbnail : '//*[@id="productImageBox"]/span/@data-image',
-                            price : '#product_price',
-                            price_display : '#special_price_box',
-                            currency : '#product-price-box > div.hidden > span > meta:nth-child(3)@content'
-                        })
-                        .data(function(obj){
-                            done(null, _.extend(obj, {url : url}));
-                        })
-                });
-                return rs.result;
-            }catch(ex){
-                console.error(ex)
+            } catch (ex) {
+                console.error('addProductFromUrl',ex)
             }
         }
     })

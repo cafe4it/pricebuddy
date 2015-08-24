@@ -17,3 +17,7 @@ underscorestring:underscore.string
 wt:uri-js
 pricebuddy:lazada
 materialize:materialize
+random
+ostrio:cookies
+dburles:collection-helpers
+meteorhacks:cluster
