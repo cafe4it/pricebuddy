@@ -16,6 +16,7 @@ Package.onUse(function (api) {
     api.use('pricebuddy:socks5-http-client',['server']);
     api.use('meteorhacks:async',['server']);
     api.use('wt:uri-js',['server']);
+    api.use('danimal:cue',['server']);
     api.use('underscore',['server']);
     api.use('underscorestring:underscore.string',['server']);
 

@@ -8,16 +8,16 @@ if (Meteor.isServer) {
                 var URL = Npm.require('url');
                 var rs = Async.runSync(function (done) {
                     var options = URL.parse(url);
-                        options.socksPort = 9050;
+                    options.socksPort = 9050;
 
-                    var req = shttp.get(options, function(res){
-                        if(res.statusCode === 200){
+                    var req = shttp.get(options, function (res) {
+                        if (res.statusCode === 200) {
                             var res_data = '';
-                            res.on('data',function(chunk){
+                            res.on('data', function (chunk) {
                                 res_data += chunk;
                             });
 
-                            res.on('end', function(){
+                            res.on('end', function () {
                                 var spider = cheerio.load(res_data);
 
                                 var adobeData = s(spider('body').find('script').first().text()).strLeftBack(';').strRightBack('=').value().trim(),
@@ -42,7 +42,7 @@ if (Meteor.isServer) {
                         }
                     });
 
-                    req.on('error',function(err){
+                    req.on('error', function (err) {
                         done(err, null);
                     });
 
@@ -55,4 +55,31 @@ if (Meteor.isServer) {
             }
         }
     })
+
+    Meteor.startup(function () {
+        Cue.maxTasksAtOnce = 10;
+        Cue.maxTaskTries = 3;
+        Cue.maxTime = 1000 * 60 * 30;
+        var jobOptions = {
+            retryOnError: true,
+            maxMs: 1000 * 60 * 10
+        }
+        Cue.dropTasks();
+
+        Cue.addJob('updateProductPrice', jobOptions, function (task, done) {
+            var product = task.data.product;
+            console.log('doing ' + task.jobName + ' of product: '+product.title);
+            var product = Meteor.call('WS_Lazada_getProductByUrl', product.url);
+            console.log(new Date, product);
+            done();
+        });
+
+        var _products = Products.find({}).fetch();
+        _.each(_products, function(p){
+            Cue.addTask('updateProductPrice', {isAsync:true, unique:false}, {product : p})
+        });
+
+        Cue.start();
+    })
+
 }

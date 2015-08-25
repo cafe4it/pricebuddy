@@ -12,11 +12,13 @@ check@1.0.5
 chuangbo:cookie@1.1.0
 coffeescript@1.0.6
 cosmos:browserify@0.5.0
+danimal:cue@1.1.3
 dburles:collection-helpers@1.0.3
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
 fastclick@1.0.3
+fongandrew:find-and-modify@0.2.1
 geojson-utils@1.0.3
 html-tools@1.0.4
 htmljs@1.0.4
@@ -42,6 +44,7 @@ meteorhacks:picker@1.0.3
 minifiers@1.1.5
 minimongo@1.0.8
 mobile-status-bar@1.0.3
+momentjs:moment@2.10.6
 mongo@1.1.0
 observe-sequence@1.0.6
 ordered-dict@1.0.3
