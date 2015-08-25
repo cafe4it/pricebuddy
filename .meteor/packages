@@ -20,3 +20,6 @@ random
 ostrio:cookies
 dburles:collection-helpers
 meteorhacks:cluster
+pricebuddy:cheerio
+pricebuddy:webcrawler
+pricebuddy:socks5-http-client

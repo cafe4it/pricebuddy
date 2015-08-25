@@ -14,37 +14,29 @@ RecentProducts = React.createClass({
             products : productsRecent,
         }
     },
-    render(){
-        if(this.data.isLoading){
-            var key = Random.id(10);
-            return (
-                <div className="row">
-                    <div className="col s12">
-                        <p>Đang tải dữ liệu...</p>
-                        <div className="divider"></div>
-                    </div>
-                </div>
-            )
-        }else{
-            var products = this.data.products,
-                msgCount = (!products) ? 0 : _.size(products),
-                productList = '';
-            if(msgCount > 0){
-                productList = products.map(function(p){
-                    var product = p.getProduct();
-                    return <RecentProductItem key={product._id} data={product}/>
-                })
-            }
-            return (
-                <div className="row">
-                    <div className="col s12">
-                        <p>Hiện tại bạn đang theo dõi giá của <b>{msgCount}</b> sản phẩm.</p>
-                        <div className="divider"></div>
-                        {productList}
-                    </div>
-                </div>
-            )
+    getProductList(){
+        var products = this.data.products,
+            msgCount = (!products) ? 0 : _.size(products),
+            msgDisplay = <p>Hiện tại bạn đang theo dõi giá của <b>{msgCount}</b> sản phẩm.</p>
+        var productList = '';
+        if(msgCount > 0){
+            productList = products.map(function(p){
+                var product = p.getProduct();
+                return <RecentProductItem key={product._id} data={product}/>
+            })
         }
+        return <div className="col s12">
+            {msgDisplay}
+            <div className="divider"></div>
+            {productList}
+        </div>
+    },
+    render(){
+        return (
+            <div className="row">
+                {(this.data.isLoading) ? <div className="col s12"><p><span>Đang tải dữ liệu...</span></p></div> : this.getProductList()}
+            </div>
+        )
 
     }
 })

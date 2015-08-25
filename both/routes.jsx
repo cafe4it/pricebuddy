@@ -6,6 +6,35 @@ FlowRouter.route("/", {
         });
     }
 });
+
+
+FlowRouter.route('/about',{
+    name : 'about',
+    action : function(){
+        ReactLayout.render(MainLayout,{
+            content : <Aboutus/>
+        })
+    }
+})
+
+FlowRouter.route('/how-it-works',{
+    name : 'howitworks',
+    action : function(){
+        ReactLayout.render(MainLayout,{
+            content : <HowItWorks/>
+        })
+    }
+});
+
+FlowRouter.route('/privacy-policy',{
+    name : 'privacypolicy',
+    action : function(){
+        ReactLayout.render(MainLayout,{
+            content : <PrivacyPolicy/>
+        })
+    }
+});
+
 /*
 
 Reaktor.init(

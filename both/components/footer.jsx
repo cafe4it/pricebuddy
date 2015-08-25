@@ -7,7 +7,7 @@ Footer = React.createClass({
                 <div className="footer-copyright">
                     <div className="container">
                         © 2015 Copyright ThienAn
-                        <a className="grey-text text-lighten-4 right" href="mailto://nguyenxuancong@outlook.com">nguyenxuancong@outlook.com</a>
+                        <a className="grey-text text-lighten-4 right" href="mailto:admin@pricebuddy.xyz">admin@pricebuddy.xyz</a>
                     </div>
                 </div>
             </footer>
