@@ -18,7 +18,6 @@ SearchBox = React.createClass({
                     if(err) console.error(err);
                     self.setState({isLoading : false});
                     React.findDOMNode(self.refs.txtLink).value = '';
-                    console.info(rs);
                 })
             }
         }

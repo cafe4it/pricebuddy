@@ -24,3 +24,7 @@ pricebuddy:cheerio
 pricebuddy:webcrawler
 pricebuddy:socks5-http-client
 danimal:cue
+pricebuddy:socks5-https-client
+pricebuddy:request
+http
+pricebuddy:socks5

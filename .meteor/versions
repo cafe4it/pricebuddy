@@ -52,7 +52,10 @@ ostrio:cookies@1.0.1
 pricebuddy:cheerio@0.0.1
 pricebuddy:lazada@0.0.1
 pricebuddy:osmosis@0.0.1
+pricebuddy:request@0.0.1
+pricebuddy:socks5@0.0.2
 pricebuddy:socks5-http-client@0.0.1
+pricebuddy:socks5-https-client@0.0.1
 pricebuddy:webcrawler@0.0.1
 random@1.0.3
 react@0.1.7

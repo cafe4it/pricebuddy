@@ -10,7 +10,7 @@ if (Meteor.isServer) {
                 var uri = new URI(url),
                     url = uri.search('').toString();
 
-                var product = Meteor.call('Lazada_getProductByURL', url);
+                var product = Meteor.call('WS_Lazada_getProductByUrl', url, true);
 
                 if(!product) return false;
 
@@ -24,12 +24,12 @@ if (Meteor.isServer) {
                         updatedAt : updatedAt
                     })
                 }else{
-
                     var pid = Products.insert({
                         productId:  product.productId,
                         title : product.title,
                         url : product.url,
                         thumbnail : product.thumbnail,
+                        fromServer : product.fromServer,
                         updatedAt : updatedAt
                     });
 
@@ -37,7 +37,7 @@ if (Meteor.isServer) {
                         pId : pid,
                         currency : product.currency,
                         price : product.price,
-                        priceDisplay : product.price_display,
+                        priceDisplay : product.priceDisplay,
                         updatedAt : updatedAt
                     });
 
